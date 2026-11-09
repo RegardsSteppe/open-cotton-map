@@ -1,0 +1,310 @@
+[
+  {
+    "id": "l01",
+    "from": "cc_fergana",
+    "to": "gin_kokand",
+    "product": "seed cotton",
+    "volume_tonnes": 60000.0,
+    "description": "SAMPLE DATA. Illustrative harvest delivery.",
+    "sources": [
+      "https://example.org/sample/l01"
+    ],
+    "date": "2025-10-01",
+    "confidence": "confirmed",
+    "sample": true
+  },
+  {
+    "id": "l02",
+    "from": "cc_kashkadarya",
+    "to": "gin_karshi",
+    "product": "seed cotton",
+    "volume_tonnes": 45000.0,
+    "description": "SAMPLE DATA. Illustrative harvest delivery.",
+    "sources": [
+      "https://example.org/sample/l02"
+    ],
+    "date": "2025-09-15",
+    "confidence": "probable",
+    "sample": true
+  },
+  {
+    "id": "l03",
+    "from": "cc_khatlon",
+    "to": "gin_bokhtar",
+    "product": "seed cotton",
+    "volume_tonnes": 25000.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l03"
+    ],
+    "date": "2025-08-02",
+    "confidence": "probable",
+    "sample": true
+  },
+  {
+    "id": "l04",
+    "from": "cc_turkestan",
+    "to": "spin_shymkent",
+    "product": "cotton lint",
+    "volume_tonnes": 15000.0,
+    "description": "SAMPLE DATA. Ginning step not documented.",
+    "sources": [
+      "https://example.org/sample/l04"
+    ],
+    "date": "2025-06-12",
+    "confidence": "unverified",
+    "sample": true
+  },
+  {
+    "id": "l05",
+    "from": "cc_mary",
+    "to": "spin_ashgabat",
+    "product": "cotton lint",
+    "volume_tonnes": 20000.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l05"
+    ],
+    "date": "2025-08-20",
+    "confidence": "unverified",
+    "sample": true
+  },
+  {
+    "id": "l06",
+    "from": "gin_kokand",
+    "to": "spin_tashkent",
+    "product": "cotton lint",
+    "volume_tonnes": 20000.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l06"
+    ],
+    "date": "2025-10-05",
+    "confidence": "confirmed",
+    "sample": true
+  },
+  {
+    "id": "l07",
+    "from": "gin_karshi",
+    "to": "spin_tashkent",
+    "product": "cotton lint",
+    "volume_tonnes": 15000.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l07"
+    ],
+    "date": "2025-09-20",
+    "confidence": "probable",
+    "sample": true
+  },
+  {
+    "id": "l08",
+    "from": "gin_bokhtar",
+    "to": "spin_denizli",
+    "product": "cotton lint",
+    "volume_tonnes": 8000.0,
+    "description": "SAMPLE DATA. Illustrative export of lint to Turkey.",
+    "sources": [
+      "https://example.org/sample/l08"
+    ],
+    "date": "2025-08-15",
+    "confidence": "probable",
+    "sample": true
+  },
+  {
+    "id": "l09",
+    "from": "spin_tashkent",
+    "to": "gf_namangan",
+    "product": "yarn",
+    "volume_tonnes": 6000.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l09"
+    ],
+    "date": "2025-10-10",
+    "confidence": "confirmed",
+    "sample": true
+  },
+  {
+    "id": "l10",
+    "from": "spin_tashkent",
+    "to": "gf_istanbul",
+    "product": "yarn",
+    "volume_tonnes": 5000.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l10"
+    ],
+    "date": "2025-10-01",
+    "confidence": "confirmed",
+    "sample": true
+  },
+  {
+    "id": "l11",
+    "from": "spin_ashgabat",
+    "to": "gf_istanbul",
+    "product": "yarn",
+    "volume_tonnes": 7000.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l11"
+    ],
+    "date": "2025-09-01",
+    "confidence": "probable",
+    "sample": true
+  },
+  {
+    "id": "l12",
+    "from": "spin_shymkent",
+    "to": "gf_istanbul",
+    "product": "yarn",
+    "volume_tonnes": 3000.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l12"
+    ],
+    "date": "2025-05-18",
+    "confidence": "unverified",
+    "sample": true
+  },
+  {
+    "id": "l13",
+    "from": "spin_denizli",
+    "to": "gf_porto",
+    "product": "yarn",
+    "volume_tonnes": 4000.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l13"
+    ],
+    "date": "2025-09-28",
+    "confidence": "probable",
+    "sample": true
+  },
+  {
+    "id": "l14",
+    "from": "gf_namangan",
+    "to": "br_berlin",
+    "product": "garments",
+    "volume_tonnes": 1500.0,
+    "description": "SAMPLE DATA. Volume in tonnes of finished goods.",
+    "sources": [
+      "https://example.org/sample/l14"
+    ],
+    "date": "2025-10-12",
+    "confidence": "confirmed",
+    "sample": true
+  },
+  {
+    "id": "l15",
+    "from": "gf_istanbul",
+    "to": "br_berlin",
+    "product": "garments",
+    "volume_tonnes": 2500.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l15"
+    ],
+    "date": "2025-10-01",
+    "confidence": "confirmed",
+    "sample": true
+  },
+  {
+    "id": "l16",
+    "from": "gf_istanbul",
+    "to": "br_paris",
+    "product": "garments",
+    "volume_tonnes": 2000.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l16"
+    ],
+    "date": "2025-10-18",
+    "confidence": "probable",
+    "sample": true
+  },
+  {
+    "id": "l17",
+    "from": "gf_istanbul",
+    "to": "br_madrid",
+    "product": "garments",
+    "volume_tonnes": 1800.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l17"
+    ],
+    "date": "2025-09-30",
+    "confidence": "unverified",
+    "sample": true
+  },
+  {
+    "id": "l18",
+    "from": "gf_porto",
+    "to": "br_paris",
+    "product": "garments",
+    "volume_tonnes": 900.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l18"
+    ],
+    "date": "2025-09-05",
+    "confidence": "probable",
+    "sample": true
+  },
+  {
+    "id": "l19",
+    "from": "gf_porto",
+    "to": "br_madrid",
+    "product": "garments",
+    "volume_tonnes": 1200.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l19"
+    ],
+    "date": "2025-09-05",
+    "confidence": "unverified",
+    "sample": true
+  },
+  {
+    "id": "l20",
+    "from": "spin_denizli",
+    "to": "fab_bursa",
+    "product": "yarn",
+    "volume_tonnes": 1500.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l20"
+    ],
+    "date": "2026-01-15",
+    "confidence": "probable",
+    "sample": true
+  },
+  {
+    "id": "l21",
+    "from": "fab_bursa",
+    "to": "gf_porto",
+    "product": "fabric",
+    "volume_tonnes": 1200.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l21"
+    ],
+    "date": "2026-01-15",
+    "confidence": "probable",
+    "sample": true
+  },
+  {
+    "id": "l22",
+    "from": "gf_porto",
+    "to": "br_nordwear",
+    "product": "garments",
+    "volume_tonnes": 500.0,
+    "description": "SAMPLE DATA.",
+    "sources": [
+      "https://example.org/sample/l22"
+    ],
+    "date": "2026-01-15",
+    "confidence": "probable",
+    "sample": true
+  }
+]

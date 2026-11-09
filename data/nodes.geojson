@@ -1,0 +1,487 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.45,
+          40.5
+        ]
+      },
+      "properties": {
+        "id": "cc_fergana",
+        "name": "Fergana Valley cotton cluster (sample)",
+        "type": "cotton_cluster",
+        "country": "Uzbekistan",
+        "city": "Fergana",
+        "description": "SAMPLE DATA. Illustrative cotton-growing cluster in the Fergana Valley. Replace with a sourced cluster record.",
+        "sources": [
+          "https://example.org/sample/cc_fergana"
+        ],
+        "date": "2025-10-01",
+        "confidence": "confirmed",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.1,
+          38.7
+        ]
+      },
+      "properties": {
+        "id": "cc_kashkadarya",
+        "name": "Kashkadarya cotton cluster (sample)",
+        "type": "cotton_cluster",
+        "country": "Uzbekistan",
+        "city": "Qarshi",
+        "description": "SAMPLE DATA. Illustrative cluster in Kashkadarya region.",
+        "sources": [
+          "https://example.org/sample/cc_kashkadarya"
+        ],
+        "date": "2025-09-15",
+        "confidence": "probable",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.83,
+          37.6
+        ]
+      },
+      "properties": {
+        "id": "cc_mary",
+        "name": "Mary province farms (sample)",
+        "type": "cotton_cluster",
+        "country": "Turkmenistan",
+        "city": "Mary",
+        "description": "SAMPLE DATA. Illustrative state-ordered cotton area around Mary.",
+        "sources": [
+          "https://example.org/sample/cc_mary",
+          "https://example.org/sample/cc_mary_2"
+        ],
+        "date": "2025-08-20",
+        "confidence": "unverified",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.9,
+          37.55
+        ]
+      },
+      "properties": {
+        "id": "cc_khatlon",
+        "name": "Khatlon cotton area (sample)",
+        "type": "cotton_cluster",
+        "country": "Tajikistan",
+        "city": "Bokhtar",
+        "description": "SAMPLE DATA. Illustrative cotton area in Khatlon region.",
+        "sources": [
+          "https://example.org/sample/cc_khatlon"
+        ],
+        "date": "2025-07-30",
+        "confidence": "probable",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.35,
+          40.85
+        ]
+      },
+      "properties": {
+        "id": "cc_turkestan",
+        "name": "Maktaaral cotton area (sample)",
+        "type": "cotton_cluster",
+        "country": "Kazakhstan",
+        "city": "Maktaaral",
+        "description": "SAMPLE DATA. Illustrative cotton area in Turkestan region.",
+        "sources": [
+          "https://example.org/sample/cc_turkestan"
+        ],
+        "date": "2025-06-12",
+        "confidence": "unverified",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.94,
+          40.53
+        ]
+      },
+      "properties": {
+        "id": "gin_kokand",
+        "name": "Sample Ginnery 1",
+        "type": "ginnery",
+        "country": "Uzbekistan",
+        "city": "Kokand",
+        "description": "SAMPLE DATA. Fictional ginnery separating lint from seed.",
+        "sources": [
+          "https://example.org/sample/gin_kokand"
+        ],
+        "date": "2025-10-05",
+        "confidence": "confirmed",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          65.79,
+          38.86
+        ]
+      },
+      "properties": {
+        "id": "gin_karshi",
+        "name": "Sample Ginnery 2",
+        "type": "ginnery",
+        "country": "Uzbekistan",
+        "city": "Qarshi",
+        "description": "SAMPLE DATA. Fictional ginnery near Karshi.",
+        "sources": [
+          "https://example.org/sample/gin_karshi"
+        ],
+        "date": "2025-09-20",
+        "confidence": "probable",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.78,
+          37.84
+        ]
+      },
+      "properties": {
+        "id": "gin_bokhtar",
+        "name": "Sample Ginnery 3",
+        "type": "ginnery",
+        "country": "Tajikistan",
+        "city": "Bokhtar",
+        "description": "SAMPLE DATA. Fictional ginnery near Bokhtar.",
+        "sources": [
+          "https://example.org/sample/gin_bokhtar"
+        ],
+        "date": "2025-08-02",
+        "confidence": "unverified",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.24,
+          41.3
+        ]
+      },
+      "properties": {
+        "id": "spin_tashkent",
+        "name": "Sample Spinning Mill A",
+        "type": "spinning_mill",
+        "country": "Uzbekistan",
+        "city": "Tashkent",
+        "description": "SAMPLE DATA. Fictional yarn mill near Tashkent.",
+        "sources": [
+          "https://example.org/sample/spin_tashkent"
+        ],
+        "date": "2025-10-10",
+        "confidence": "confirmed",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.38,
+          37.95
+        ]
+      },
+      "properties": {
+        "id": "spin_ashgabat",
+        "name": "Sample Spinning Mill B",
+        "type": "spinning_mill",
+        "country": "Turkmenistan",
+        "city": "Ashgabat",
+        "description": "SAMPLE DATA. Fictional state textile complex near Ashgabat.",
+        "sources": [
+          "https://example.org/sample/spin_ashgabat"
+        ],
+        "date": "2025-09-01",
+        "confidence": "probable",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.6,
+          42.32
+        ]
+      },
+      "properties": {
+        "id": "spin_shymkent",
+        "name": "Sample Spinning Mill C",
+        "type": "spinning_mill",
+        "country": "Kazakhstan",
+        "city": "Shymkent",
+        "description": "SAMPLE DATA. Fictional yarn mill in Shymkent.",
+        "sources": [
+          "https://example.org/sample/spin_shymkent"
+        ],
+        "date": "2025-05-18",
+        "confidence": "unverified",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.09,
+          37.78
+        ]
+      },
+      "properties": {
+        "id": "spin_denizli",
+        "name": "Sample Spinning Mill D",
+        "type": "spinning_mill",
+        "country": "Turkey",
+        "city": "Denizli",
+        "description": "SAMPLE DATA. Fictional mill in Denizli importing Central Asian lint.",
+        "sources": [
+          "https://example.org/sample/spin_denizli"
+        ],
+        "date": "2025-09-28",
+        "confidence": "probable",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.67,
+          41.0
+        ]
+      },
+      "properties": {
+        "id": "gf_namangan",
+        "name": "Sample Garment Factory 1",
+        "type": "garment_factory",
+        "country": "Uzbekistan",
+        "city": "Namangan",
+        "description": "SAMPLE DATA. Fictional cut-and-sew factory in Namangan.",
+        "sources": [
+          "https://example.org/sample/gf_namangan"
+        ],
+        "date": "2025-10-12",
+        "confidence": "confirmed",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.95,
+          41.01
+        ]
+      },
+      "properties": {
+        "id": "gf_istanbul",
+        "name": "Sample Garment Factory 2",
+        "type": "garment_factory",
+        "country": "Turkey",
+        "city": "Istanbul",
+        "description": "SAMPLE DATA. Fictional garment supplier in Istanbul.",
+        "sources": [
+          "https://example.org/sample/gf_istanbul",
+          "https://example.org/sample/gf_istanbul_audit"
+        ],
+        "date": "2025-10-01",
+        "confidence": "confirmed",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.61,
+          41.15
+        ]
+      },
+      "properties": {
+        "id": "gf_porto",
+        "name": "Sample Garment Factory 3",
+        "type": "garment_factory",
+        "country": "Portugal",
+        "city": "Porto",
+        "description": "SAMPLE DATA. Fictional knitwear factory near Porto.",
+        "sources": [
+          "https://example.org/sample/gf_porto"
+        ],
+        "date": "2025-09-05",
+        "confidence": "probable",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4,
+          52.52
+        ]
+      },
+      "properties": {
+        "id": "br_berlin",
+        "name": "Sample Brand A",
+        "type": "brand",
+        "country": "Germany",
+        "city": "Berlin",
+        "description": "SAMPLE DATA. Fictional fashion brand headquartered in Berlin.",
+        "sources": [
+          "https://example.org/sample/br_berlin"
+        ],
+        "date": "2025-10-20",
+        "confidence": "confirmed",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.35,
+          48.86
+        ]
+      },
+      "properties": {
+        "id": "br_paris",
+        "name": "Sample Brand B",
+        "type": "brand",
+        "country": "France",
+        "city": "Paris",
+        "description": "SAMPLE DATA. Fictional fashion brand headquartered in Paris.",
+        "sources": [
+          "https://example.org/sample/br_paris"
+        ],
+        "date": "2025-10-18",
+        "confidence": "probable",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7,
+          40.42
+        ]
+      },
+      "properties": {
+        "id": "br_madrid",
+        "name": "Sample Brand C",
+        "type": "brand",
+        "country": "Spain",
+        "city": "Madrid",
+        "description": "SAMPLE DATA. Fictional fashion brand headquartered in Madrid.",
+        "sources": [
+          "https://example.org/sample/br_madrid"
+        ],
+        "date": "2025-09-30",
+        "confidence": "unverified",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.06,
+          40.19
+        ]
+      },
+      "properties": {
+        "id": "fab_bursa",
+        "name": "Sample Fabric Mill 1",
+        "type": "fabric_mill",
+        "country": "Turkey",
+        "city": "Bursa",
+        "description": "SAMPLE DATA. Fictional fabric supplier near Bursa.",
+        "sources": [
+          "https://example.org/sample/fab_bursa"
+        ],
+        "date": "2026-01-15",
+        "confidence": "probable",
+        "sample": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.57,
+          55.68
+        ]
+      },
+      "properties": {
+        "id": "br_nordwear",
+        "name": "NORDWEAR (fictional)",
+        "type": "brand",
+        "country": "Denmark",
+        "city": "Copenhagen",
+        "description": "SAMPLE DATA. Fictional fashion brand headquartered in Copenhagen. Not a real company.",
+        "sources": [
+          "https://example.org/sample/br_nordwear"
+        ],
+        "date": "2026-01-15",
+        "confidence": "confirmed",
+        "sample": true
+      }
+    }
+  ]
+}

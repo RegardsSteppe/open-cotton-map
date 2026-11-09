@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAXTA — Scan (concept)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* PAXTA identity — see CLAUDE.md § Design */
+  :root {
+    --night: #10162B;
+    --surface: #18213F;
+    --cotton: #F2EDE4;
+    --cotton-2: rgba(242, 237, 228, .68);   /* secondary text */
+    --cotton-3: rgba(242, 237, 228, .62);   /* Uzbek labels, captions */
+    --line: rgba(242, 237, 228, .14);
+    --madder: #B3261E;
+    --rishtan: #2BA6A0;
+    --saffron: #E0A526;
+    --sans: "IBM Plex Sans", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--night); color: var(--cotton); font-family: var(--sans); padding: 36px 16px 32px; }
+  .uz { color: var(--cotton-3); font-weight: 400; }
+
+  .masthead { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 30px; }
+  .brandline { display: flex; align-items: center; gap: 12px; }
+  .brandline svg { color: var(--cotton); }
+  .wordmark { font-weight: 600; font-size: 22px; letter-spacing: .32em; }
+  .wordmark + span { font-family: var(--mono); font-size: 13px; color: var(--cotton-2); }
+  h1 { margin: 0; font-size: 15px; font-weight: 400; color: var(--cotton-2); }
+
+  .stage { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+
+  /* device frame: the only rounded element */
+  .phone {
+    width: 390px; height: 844px; flex: none; position: relative; overflow: hidden;
+    border: 10px solid var(--surface); outline: 1px solid var(--line); border-radius: 44px; background: var(--night);
+  }
+  .screen { position: absolute; inset: 0; display: flex; flex-direction: column; }
+  .status { height: 44px; flex: none; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 26px; font-size: 14px; font-weight: 600; position: relative; }
+  .status .icons { display: flex; gap: 6px; align-items: center; font-family: var(--mono); font-size: 12px; }
+  .bat { width: 22px; height: 11px; border: 1.5px solid currentColor; position: relative; }
+  .bat::after { content: ""; position: absolute; inset: 1.5px 5px 1.5px 1.5px; background: currentColor; }
+  .home { position: absolute; bottom: 8px; left: 50%; width: 134px; height: 5px; margin-left: -67px;
+    background: var(--cotton); opacity: .8; border-radius: 3px; }
+
+  /* ---------- screen 1: scan ---------- */
+  .camtex { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .cam-top { position: relative; display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 20px; font-size: 15px; }
+  .cam-top .x { font-size: 22px; line-height: 1; }
+  .cam-top .title { text-align: center; line-height: 1.2; }
+  .cam-top .title small { display: block; font-size: 11px; }
+
+  .label {               /* physical garment care label in front of the camera */
+    position: absolute; left: 62px; top: 176px; width: 250px; height: 392px; transform: rotate(-4deg);
+    background: #ECE8E0; color: #1d1d1d; padding: 22px 20px; font-family: var(--mono); font-size: 11px; letter-spacing: .04em;
+  }
+  .label .lb { font-family: var(--sans); font-weight: 600; font-size: 15px; letter-spacing: .25em; }
+  .label .care { margin-top: 8px; line-height: 1.6; opacity: .75; }
+  .label .codes { margin-top: 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 46px; }
+  .label .ean { font-size: 10px; letter-spacing: .12em; margin-top: 3px; }
+  .label .dpp { display: flex; gap: 10px; align-items: center; }
+  .label .dpp small { display: block; font-family: var(--sans); font-size: 9px; line-height: 1.35; max-width: 90px; }
+
+  .finder { position: absolute; left: 40px; right: 40px; top: 206px; height: 364px; }
+  .finder i { position: absolute; width: 30px; height: 30px; border: 2px solid var(--cotton); }
+  .finder i:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; }
+  .finder i:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; }
+  .finder i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; }
+  .finder i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+  .finder .beam { position: absolute; left: 10px; right: 10px; top: 46%; height: 1px; background: var(--cotton); }
+
+  /* detection boxes sit inside the label so they follow its rotation */
+  .hit { position: relative; display: inline-block; outline: 2px solid var(--night); outline-offset: 5px; }
+  .hit > .tag-hit { position: absolute; left: -7px; top: -29px; white-space: nowrap; font-family: var(--mono);
+    font-size: 10.5px; font-weight: 500; letter-spacing: 0; background: var(--night); color: var(--cotton);
+    padding: 3px 7px; line-height: normal; }
+
+  .cam-bottom { position: absolute; left: 0; right: 0; bottom: 0; padding: 20px 24px 34px; text-align: center;
+    background: rgba(16, 22, 43, .9); border-top: 1px solid var(--line); }
+  .cam-bottom p { margin: 0; font-size: 17px; font-weight: 600; }
+  .cam-bottom p .uz { display: block; font-size: 12px; margin-top: 2px; }
+  .cam-bottom small { display: block; margin-top: 8px; font-family: var(--mono); font-size: 12px; color: var(--cotton-2); }
+  .progress { margin: 14px auto 0; width: 180px; height: 2px; background: var(--line); }
+  .progress b { display: block; width: 62%; height: 100%; background: var(--cotton); }
+
+  /* ---------- screen 2: result ---------- */
+
+  .appbar { display: flex; align-items: center; gap: 10px; padding: 2px 18px 10px; border-bottom: 1px solid var(--line);
+    font-size: 14px; color: var(--cotton-2); }
+  .appbar .back { font-size: 19px; color: var(--cotton); }
+  .appbar .lang { margin-left: auto; font-family: var(--mono); font-size: 11px; padding: 3px 8px; border: 1px solid var(--line); color: var(--cotton); }
+  .body { padding: 10px 18px 0; display: flex; flex-direction: column; }
+
+  .product { display: flex; gap: 12px; align-items: center; }
+  .thumb { width: 38px; height: 38px; flex: none; border: 1px solid var(--line); display: grid; place-items: center; }
+  .product h2 { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.2; }
+  .product p { margin: 2px 0 0; font-size: 11px; letter-spacing: .14em; color: var(--cotton-2); }
+
+  .verdict { margin: 10px 0 0; font-size: 19px; font-weight: 600; line-height: 1.25; }
+
+  /* timeline: circles joined by a thin link; stroke style = confidence */
+  .timeline { list-style: none; margin: 12px 0 0; padding: 0; position: relative; }
+  .timeline li { display: grid; grid-template-columns: 32px 1fr auto; column-gap: 10px; position: relative; align-items: start; align-content: start;
+    height: 60px; padding: 6px 0 4px; }
+  /* links between step circles: same stroke code as the map links */
+  .timeline li:not(:last-child)::after { content: ""; position: absolute; left: 15.25px; top: 38px; height: 28px; width: 0; border-left: 1.5px solid var(--cotton); }
+  .timeline li.lc:not(:last-child)::after { border-left-style: dashed; }
+  .timeline li.lu:not(:last-child)::after { border-left-style: dotted; }
+  .ribbon { display: block; width: 100%; height: 6px; margin-top: 10px; }
+  .timeline .ic { grid-row: 1; grid-column: 1; position: relative; width: 32px; height: 32px; box-sizing: border-box; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; filter: none; }
+  .timeline .ic svg { width: 18px; height: 18px; display: block; filter: none; }
+  .ic.v { background: var(--cotton); color: var(--night); }
+  .timeline .ic.v svg { stroke: var(--night); }
+  .ic.c { border: 1.5px solid var(--cotton); color: var(--cotton); }
+  .ic.u { border: 1.5px dashed var(--cotton); color: var(--cotton); }
+  .ic.u svg { opacity: .4; }
+  .ic .mk { position: absolute; right: -3px; bottom: -3px; width: 12px; height: 12px; border-radius: 50%; box-sizing: border-box;
+    background: var(--night); border: 1px solid var(--cotton); color: var(--cotton); font: 500 8px/10px var(--mono); text-align: center; }
+  .timeline .tx { grid-row: 1; grid-column: 2; min-width: 0; }
+  .timeline .tx b { display: block; font-size: 14px; font-weight: 600; line-height: 1.2; }
+  .timeline .tx span { display: block; font-size: 12px; color: var(--cotton-2); line-height: 1.25; }
+  .timeline .badge { grid-row: 1; grid-column: 3; font-family: var(--mono); font-size: 10px; letter-spacing: .04em;
+    padding: 2px 6px; text-transform: uppercase; }
+  .badge.v { background: var(--cotton); color: var(--night); font-weight: 500; }
+  .badge.c { border: 1px solid var(--cotton); color: var(--cotton); }
+  .badge.u { border: 1px dashed rgba(242, 237, 228, .5); color: var(--cotton-2); }
+  .timeline .sub { grid-row: 2; grid-column: 2 / -1; font-size: 10.5px; color: var(--cotton-2); white-space: nowrap; align-self: end; }
+  .timeline .sub.blur { filter: blur(.5px); opacity: .6; font-style: italic; }
+  .timeline .sub.arch { font-family: var(--mono); }
+  .hash { color: var(--cotton); }
+
+  .minimap { margin-top: 9px; border: 1px solid var(--line); background: var(--surface); }
+  .minimap svg { display: block; width: 100%; height: 104px; }
+
+  .actions { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 18px 24px; display: flex; flex-direction: column; gap: 8px;
+    background: var(--night); border-top: 1px solid var(--line); }
+  .cta, .cta2 { display: block; text-align: center; text-decoration: none; font-weight: 600; font-size: 14px; padding: 11px 12px; line-height: 1.2; }
+  .cta { background: var(--saffron); color: var(--night); }
+  .cta2 { border: 1px solid var(--cotton); color: var(--cotton); font-weight: 500; }
+
+  /* ---------- legend + footer below the phones ---------- */
+  .legend { display: flex; justify-content: center; gap: 12px 28px; flex-wrap: wrap; margin: 28px auto 0; max-width: 100%; padding: 0 8px; font-size: 13px; }
+  .legend > span:first-child { color: var(--cotton-2); flex: 0 0 100%; text-align: center; }
+  .legend div { display: flex; align-items: center; gap: 8px; }
+  .legend svg { width: 64px; height: 30px; outline: 1px solid var(--line); }
+  .footer { text-align: center; color: var(--cotton-3); font-size: 12.5px; margin-top: 18px; font-family: var(--mono); }
+</style>
+</head>
+<body>
+
+<!-- Shared definitions: logo, ikat pattern, confidence filters -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Logo: cotton boll (4 locules) on a Samarkand eight-point star -->
+    <symbol id="logo" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="miter">
+        <rect x="11" y="11" width="26" height="26"/>
+        <rect x="11" y="11" width="26" height="26" transform="rotate(45 24 24)"/>
+        <circle cx="24" cy="18.5" r="5.5"/><circle cx="29.5" cy="24" r="5.5"/>
+        <circle cx="24" cy="29.5" r="5.5"/><circle cx="18.5" cy="24" r="5.5"/>
+        <path d="M24 21.5 L26.5 24 L24 26.5 L21.5 24 Z"/>
+      </g>
+    </symbol>
+
+    <!-- Abrband ikat: stepped warp-dyed lozenges, madder + cotton on indigo -->
+    <pattern id="ikat" width="16" height="36" patternUnits="userSpaceOnUse">
+      <rect width="16" height="36" fill="#10162B"/>
+      <path fill="#F2EDE4" d="M6.5 1h3v4h2v5h2v4h1.5v8h-1.5v4h-2v5h-2v4h-3v-4h-2v-5h-2v-4h-1.5v-8h1.5v-4h2v-5h2z"/>
+      <path fill="#B3261E" d="M6.5 7h3v5h2v4h1.5v4h-1.5v4h-2v5h-3v-5h-2v-4h-1.5v-4h1.5v-4h2z"/>
+      <rect x="7" y="16" width="2" height="4" fill="#F2EDE4"/>
+    </pattern>
+
+    <!-- thin crisp band: same motif scaled to 6px height -->
+    <pattern id="ikat-band" href="#ikat" patternTransform="scale(.1667)"/>
+
+    <!-- probable: dye bleeds along the warp (vertical) -->
+    <filter id="fray" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9 0.06" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="0.5 0.9"/>
+    </filter>
+    <!-- unknown: strongly frayed, blurred, washed out -->
+    <filter id="fade" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7 0.03" numOctaves="2" seed="9" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="0.7 2.2" result="b"/>
+      <feColorMatrix in="b" type="saturate" values="0.15" result="s"/>
+      <feComponentTransfer in="s"><feFuncA type="linear" slope="0.42"/></feComponentTransfer>
+    </filter>
+
+    <!-- camera noise for the simulated viewfinder (a photo, not decoration) -->
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9 0.35" numOctaves="3" seed="2"/>
+      <feColorMatrix values="0 0 0 0 0.95  0 0 0 0 0.93  0 0 0 0 0.89  0 0 0 0.09 0"/>
+    </filter>
+  </defs>
+</svg>
+
+<header class="masthead">
+  <div class="brandline">
+    <svg width="40" height="40"><use href="#logo"/></svg>
+    <span class="wordmark">PAXTA</span><span>Open Cotton Map</span>
+  </div>
+  <h1>Open Cotton Map — Scan (concept)</h1>
+</header>
+
+<div class="stage">
+  <!-- ================= Screen 1: Scan ================= -->
+  <div class="phone" aria-label="Screen 1: scanning a label">
+    <div class="screen" style="background:#0C1122">
+      <svg class="camtex" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain)"/></svg>
+      <div class="status"><span>9:41</span><span class="icons">5G <span class="bat"></span></span></div>
+      <div class="cam-top">
+        <span class="x">×</span>
+        <span class="title">Scan a label<small class="uz" lang="uz">Yorliqni skanerlang</small></span>
+        <svg width="22" height="22"><use href="#logo"/></svg>
+      </div>
+
+      <div class="label" aria-hidden="true">
+        <div class="lb">NORDWEAR</div>
+        <div class="care">100% COTTON · M<br>MACHINE WASH 30°<br>STYLE 2041-BLK</div>
+        <div class="codes">
+          <div class="hit"><span class="tag-hit">✓ Barcode · EAN-13</span>
+            <svg width="150" height="52" viewBox="0 0 87 40" preserveAspectRatio="none"><path d="M0 0h1v40h-1zM3 0h2v40h-2zM6 0h1v40h-1zM9 0h2v40h-2zM14 0h2v40h-2zM17 0h2v40h-2zM20 0h2v40h-2zM23 0h2v40h-2zM26 0h1v40h-1zM30 0h2v40h-2zM34 0h2v40h-2zM38 0h2v40h-2zM43 0h1v40h-1zM45 0h3v40h-3zM49 0h2v40h-2zM53 0h3v40h-3zM57 0h3v40h-3zM61 0h1v40h-1zM64 0h1v40h-1zM66 0h1v40h-1zM68 0h2v40h-2zM72 0h3v40h-3zM77 0h3v40h-3zM82 0h2v40h-2z" fill="#111"/></svg>
+            <div class="ean">5 901234 123457</div>
+          </div>
+          <div class="dpp">
+            <span class="hit" style="line-height:0"><span class="tag-hit">✓ Digital Product Passport</span><svg width="84" height="84" viewBox="-1 -1 27 27" shape-rendering="crispEdges"><rect x="-1" y="-1" width="27" height="27" fill="#fff"/><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM8 0h1v1h-1zM9 0h1v1h-1zM10 0h1v1h-1zM11 0h1v1h-1zM12 0h1v1h-1zM14 0h1v1h-1zM15 0h1v1h-1zM18 0h1v1h-1zM19 0h1v1h-1zM20 0h1v1h-1zM21 0h1v1h-1zM22 0h1v1h-1zM23 0h1v1h-1zM24 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h1v1h-1zM9 1h1v1h-1zM10 1h1v1h-1zM12 1h1v1h-1zM13 1h1v1h-1zM15 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM24 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM11 2h1v1h-1zM15 2h1v1h-1zM18 2h1v1h-1zM20 2h1v1h-1zM21 2h1v1h-1zM22 2h1v1h-1zM24 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM9 3h1v1h-1zM10 3h1v1h-1zM11 3h1v1h-1zM13 3h1v1h-1zM14 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM21 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM15 4h1v1h-1zM18 4h1v1h-1zM20 4h1v1h-1zM21 4h1v1h-1zM22 4h1v1h-1zM24 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM9 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM16 5h1v1h-1zM18 5h1v1h-1zM24 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM22 6h1v1h-1zM23 6h1v1h-1zM24 6h1v1h-1zM10 7h1v1h-1zM14 7h1v1h-1zM15 7h1v1h-1zM16 7h1v1h-1zM0 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM8 8h1v1h-1zM11 8h1v1h-1zM12 8h1v1h-1zM15 8h1v1h-1zM16 8h1v1h-1zM17 8h1v1h-1zM20 8h1v1h-1zM24 8h1v1h-1zM1 9h1v1h-1zM2 9h1v1h-1zM7 9h1v1h-1zM10 9h1v1h-1zM11 9h1v1h-1zM12 9h1v1h-1zM13 9h1v1h-1zM15 9h1v1h-1zM16 9h1v1h-1zM17 9h1v1h-1zM19 9h1v1h-1zM20 9h1v1h-1zM23 9h1v1h-1zM3 10h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM12 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM19 10h1v1h-1zM0 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM12 11h1v1h-1zM16 11h1v1h-1zM17 11h1v1h-1zM18 11h1v1h-1zM19 11h1v1h-1zM20 11h1v1h-1zM21 11h1v1h-1zM0 12h1v1h-1zM3 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM12 12h1v1h-1zM13 12h1v1h-1zM15 12h1v1h-1zM16 12h1v1h-1zM17 12h1v1h-1zM19 12h1v1h-1zM21 12h1v1h-1zM22 12h1v1h-1zM23 12h1v1h-1zM1 13h1v1h-1zM5 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM10 13h1v1h-1zM11 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM19 13h1v1h-1zM20 13h1v1h-1zM22 13h1v1h-1zM23 13h1v1h-1zM2 14h1v1h-1zM4 14h1v1h-1zM6 14h1v1h-1zM7 14h1v1h-1zM10 14h1v1h-1zM11 14h1v1h-1zM13 14h1v1h-1zM14 14h1v1h-1zM15 14h1v1h-1zM16 14h1v1h-1zM17 14h1v1h-1zM18 14h1v1h-1zM19 14h1v1h-1zM21 14h1v1h-1zM23 14h1v1h-1zM24 14h1v1h-1zM0 15h1v1h-1zM1 15h1v1h-1zM2 15h1v1h-1zM5 15h1v1h-1zM8 15h1v1h-1zM10 15h1v1h-1zM13 15h1v1h-1zM17 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM23 15h1v1h-1zM24 15h1v1h-1zM0 16h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM4 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM9 16h1v1h-1zM10 16h1v1h-1zM11 16h1v1h-1zM12 16h1v1h-1zM13 16h1v1h-1zM14 16h1v1h-1zM18 16h1v1h-1zM20 16h1v1h-1zM21 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM8 17h1v1h-1zM9 17h1v1h-1zM10 17h1v1h-1zM17 17h1v1h-1zM18 17h1v1h-1zM20 17h1v1h-1zM23 17h1v1h-1zM0 18h1v1h-1zM1 18h1v1h-1zM2 18h1v1h-1zM3 18h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM6 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM16 18h1v1h-1zM17 18h1v1h-1zM18 18h1v1h-1zM0 19h1v1h-1zM6 19h1v1h-1zM8 19h1v1h-1zM9 19h1v1h-1zM10 19h1v1h-1zM12 19h1v1h-1zM16 19h1v1h-1zM17 19h1v1h-1zM22 19h1v1h-1zM23 19h1v1h-1zM24 19h1v1h-1zM0 20h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM9 20h1v1h-1zM11 20h1v1h-1zM12 20h1v1h-1zM13 20h1v1h-1zM15 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM22 20h1v1h-1zM23 20h1v1h-1zM24 20h1v1h-1zM0 21h1v1h-1zM2 21h1v1h-1zM3 21h1v1h-1zM4 21h1v1h-1zM6 21h1v1h-1zM11 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM17 21h1v1h-1zM18 21h1v1h-1zM19 21h1v1h-1zM20 21h1v1h-1zM21 21h1v1h-1zM23 21h1v1h-1zM0 22h1v1h-1zM2 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM6 22h1v1h-1zM10 22h1v1h-1zM11 22h1v1h-1zM12 22h1v1h-1zM13 22h1v1h-1zM14 22h1v1h-1zM16 22h1v1h-1zM18 22h1v1h-1zM19 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM11 23h1v1h-1zM12 23h1v1h-1zM14 23h1v1h-1zM15 23h1v1h-1zM16 23h1v1h-1zM17 23h1v1h-1zM20 23h1v1h-1zM22 23h1v1h-1zM24 23h1v1h-1zM0 24h1v1h-1zM1 24h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM4 24h1v1h-1zM5 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM9 24h1v1h-1zM10 24h1v1h-1zM11 24h1v1h-1zM12 24h1v1h-1zM13 24h1v1h-1zM14 24h1v1h-1zM15 24h1v1h-1zM19 24h1v1h-1zM20 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1z" fill="#111"/></svg></span>
+            <small><b>Digital Product Passport</b><br>Scan for product information</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="finder"><i></i><i></i><i></i><i></i><div class="beam"></div></div>
+
+      <div class="cam-bottom">
+        <p>Scanning label…<span class="uz" lang="uz">Yorliq skanerlanmoqda…</span></p>
+        <small>2 codes detected · hold steady</small>
+        <div class="progress"><b></b></div>
+      </div>
+      <div class="home"></div>
+    </div>
+  </div>
+
+  <!-- ================= Screen 2: Result ================= -->
+  <div class="phone" aria-label="Screen 2: scan result">
+    <div class="screen">
+      <div class="status"><span>9:41</span><span class="icons">5G <span class="bat"></span></span></div>
+      <div class="appbar">
+        <span class="back">←</span><span>Scan result</span>
+        <span class="lang">EN ▾</span>
+      </div>
+
+      <div class="body">
+        <div class="product">
+          <div class="thumb" aria-hidden="true">
+            <svg width="26" height="23" viewBox="0 0 34 30"><path d="M11 1 L1 6 L4 13 L8 11 V29 H26 V11 L30 13 L33 6 L23 1 C21 4 13 4 11 1 Z" fill="none" stroke="#F2EDE4" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h2>Basic Cotton T-Shirt</h2>
+            <p>NORDWEAR</p>
+          </div>
+        </div>
+
+        <svg class="ribbon" aria-hidden="true"><rect width="100%" height="100%" fill="url(#ikat-band)"/></svg>
+
+        <p class="verdict">We can trace this T-shirt to a spinning mill. Where its cotton was grown is unknown.</p>
+
+        <ol class="timeline" aria-label="Supply chain, from field to garment">
+          <li class="lu"><span class="ic u"><i data-lucide="sprout"></i><b class="mk">?</b></span><div class="tx"><b>Cotton field</b></div><span class="badge u">Unknown</span><div class="sub blur">Possible: Uzbekistan · Turkmenistan · Tajikistan</div></li>
+          <li class="lu"><span class="ic u"><i data-lucide="cog"></i><b class="mk">?</b></span><div class="tx"><b>Ginnery</b></div><span class="badge u">Unknown</span><div class="sub blur">Possible: Uzbekistan · Turkmenistan · Tajikistan</div></li>
+          <li class="lc"><span class="ic v"><i data-lucide="factory"></i><b class="mk">✓</b></span><div class="tx"><b>Spinning mill</b><span>Uzbekistan-linked</span></div><span class="badge v">Verified</span><div class="sub arch">2 archived sources · SHA-256 <span class="hash">9f2c…e5c</span></div></li>
+          <li class="lc"><span class="ic c"><i data-lucide="layers"></i></span><div class="tx"><b>Fabric</b><span>Türkiye</span></div><span class="badge c">Claimed</span></li>
+          <li class="lc"><span class="ic c"><i data-lucide="shirt"></i></span><div class="tx"><b>Garment</b><span>Portugal</span></div><span class="badge c">Claimed</span></li>
+        </ol>
+
+        <div class="minimap" aria-label="Route: Central Asia, Türkiye, Portugal, brand">
+          <svg viewBox="0 0 334 104" preserveAspectRatio="xMidYMid meet">
+            <ellipse cx="236" cy="50" rx="9" ry="5" fill="none" stroke="#2BA6A0" stroke-width="1.2"/>
+            <text x="236" y="68" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="#2BA6A0">Aral Sea</text>
+            <g fill="#B3261E"><path d="M213 77 L205 72 L204 81 Z"/><path d="M103 86 L111 83 L105 78 Z" transform="rotate(8 105 82)"/><path d="M80 38 L84 46 L90 40 Z" transform="rotate(10 84 42)"/></g>
+            <g fill="none" stroke="#B3261E" stroke-width="1.8" stroke-linecap="round">
+              <path d="M276 56 C240 84 210 84 176 66"/>
+              <path d="M176 66 C130 90 80 92 46 78" stroke-dasharray="5 4"/>
+              <path d="M46 78 C60 50 80 36 104 24" stroke-dasharray="5 4"/>
+            </g>
+            <g fill="#10162B" stroke="#F2EDE4" stroke-width="1.2">
+              <rect x="272" y="52" width="8" height="8"/><rect x="172" y="62" width="8" height="8"/>
+              <rect x="42" y="74" width="8" height="8"/><rect x="100" y="20" width="8" height="8"/>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#F2EDE4">
+              <text x="276" y="46" text-anchor="middle">Central Asia</text>
+              <text x="176" y="56" text-anchor="middle">Türkiye</text>
+              <text x="46" y="96" text-anchor="middle">Portugal</text>
+              <text x="116" y="18">NORDWEAR</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="cta" href="mailto:transparency@nordwear.example?subject=Where%20does%20the%20cotton%20in%20your%20Basic%20Cotton%20T-Shirt%20come%20from%3F&amp;body=Hello%20NORDWEAR%2C%0A%0AI%20scanned%20your%20Basic%20Cotton%20T-Shirt%20(EAN%205901234123457)%20with%20Open%20Cotton%20Map.%0A%0ACould%20you%20tell%20me%3A%0A-%20where%20the%20raw%20cotton%20was%20grown%2C%0A-%20under%20what%20harvest%20conditions%2C%0A-%20how%20much%20water%20was%20used%3F%0A%0AThank%20you.">Ask NORDWEAR where the cotton comes from</a>
+        <a class="cta2" href="../index.html#trace-nordwear-basic-tee">See the journey on the map</a>
+      </div>
+      <div class="home"></div>
+    </div>
+  </div>
+</div>
+
+<div class="legend" aria-label="Legend: line style encodes confidence">
+  <span>Line style = confidence <span class="uz" lang="uz">· Ishonch darajasi</span></span>
+  <div><svg viewBox="0 0 64 30"><line x1="4" y1="15" x2="60" y2="15" stroke="#F2EDE4" stroke-width="1.5"/></svg>Verified <span class="uz" lang="uz">· Tasdiqlangan</span></div>
+  <div><svg viewBox="0 0 64 30"><line x1="4" y1="15" x2="60" y2="15" stroke="#F2EDE4" stroke-width="1.5" stroke-dasharray="10 3"/></svg>Claimed by brand <span class="uz" lang="uz">· Ehtimoliy</span></div>
+  <div><svg viewBox="0 0 64 30"><line x1="4" y1="15" x2="60" y2="15" stroke="#F2EDE4" stroke-width="1.5" stroke-dasharray="1.5 4"/></svg>Unknown <span class="uz" lang="uz">· Nomaʼlum</span></div>
+</div>
+<p class="footer">Concept mockup — illustrative data. Fictional brand.</p>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons({ attrs: { width: 20, height: 20, "stroke-width": 1.75, stroke: "#F2EDE4" } });</script>
+</body>
+</html>

@@ -1,0 +1,683 @@
+{
+  "meta": {
+    "source": "UN Comtrade (mirror import statistics)",
+    "year": 2023,
+    "hs": [
+      "5201",
+      "5205"
+    ],
+    "min_tonnes": 500,
+    "retrieved": "2026-11-09",
+    "notes": "Country level only. Russia does not report since 2022. Figures are declared by importers and may differ from exporter data."
+  },
+  "countries": {
+    "UZB": {
+      "name": "Uzbekistan",
+      "lat": 41.4,
+      "lon": 64.6
+    },
+    "ARM": {
+      "name": "Armenia",
+      "lat": 40.2,
+      "lon": 45.0
+    },
+    "BEL": {
+      "name": "Belgium",
+      "lat": 50.6,
+      "lon": 4.6
+    },
+    "CHN": {
+      "name": "China",
+      "lat": 35.0,
+      "lon": 103.0
+    },
+    "IRN": {
+      "name": "Iran",
+      "lat": 32.5,
+      "lon": 54.0
+    },
+    "ITA": {
+      "name": "Italy",
+      "lat": 42.8,
+      "lon": 12.6
+    },
+    "KGZ": {
+      "name": "Kyrgyzstan",
+      "lat": 41.5,
+      "lon": 74.6
+    },
+    "MAR": {
+      "name": "Morocco",
+      "lat": 31.8,
+      "lon": -6.8
+    },
+    "POL": {
+      "name": "Poland",
+      "lat": 52.1,
+      "lon": 19.4
+    },
+    "PRT": {
+      "name": "Portugal",
+      "lat": 39.6,
+      "lon": -8.0
+    },
+    "TUR": {
+      "name": "Türkiye",
+      "lat": 39.0,
+      "lon": 35.0
+    },
+    "UKR": {
+      "name": "Ukraine",
+      "lat": 49.0,
+      "lon": 31.5
+    },
+    "EGY": {
+      "name": "Egypt",
+      "lat": 26.5,
+      "lon": 30.0
+    },
+    "TKM": {
+      "name": "Turkmenistan",
+      "lat": 39.0,
+      "lon": 59.6
+    },
+    "TJK": {
+      "name": "Tajikistan",
+      "lat": 38.9,
+      "lon": 71.0
+    },
+    "KAZ": {
+      "name": "Kazakhstan",
+      "lat": 48.0,
+      "lon": 67.0
+    },
+    "FRA": {
+      "name": "France",
+      "lat": 46.6,
+      "lon": 2.4
+    },
+    "DEU": {
+      "name": "Germany",
+      "lat": 51.1,
+      "lon": 10.4
+    }
+  },
+  "flows": [
+    {
+      "id": "ct_UZB_CHN_5205_2023",
+      "from": "UZB",
+      "to": "CHN",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 129927.8,
+      "value_usd": 314094888,
+      "year": 2023,
+      "description": "China declared 129,928 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_TUR_5205_2023",
+      "from": "UZB",
+      "to": "TUR",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 107669.2,
+      "value_usd": 317930610,
+      "year": 2023,
+      "description": "Türkiye declared 107,669 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TKM_TUR_5205_2023",
+      "from": "TKM",
+      "to": "TUR",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 41289.3,
+      "value_usd": 86213431,
+      "year": 2023,
+      "description": "Türkiye declared 41,289 t of HS 5205 (cotton yarn) imported from Turkmenistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=795&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_KAZ_CHN_5201_2023",
+      "from": "KAZ",
+      "to": "CHN",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 31383.4,
+      "value_usd": 56942075,
+      "year": 2023,
+      "description": "China declared 31,383 t of HS 5201 (raw cotton (lint)) imported from Kazakhstan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=398&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TJK_IRN_5201_2023",
+      "from": "TJK",
+      "to": "IRN",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 27335.6,
+      "value_usd": 71639314,
+      "year": 2023,
+      "description": "Iran declared 27,336 t of HS 5201 (raw cotton (lint)) imported from Tajikistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=762&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_IRN_5205_2023",
+      "from": "UZB",
+      "to": "IRN",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 24820.3,
+      "value_usd": 69275351,
+      "year": 2023,
+      "description": "Iran declared 24,820 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TJK_TUR_5201_2023",
+      "from": "TJK",
+      "to": "TUR",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 23890.0,
+      "value_usd": 44815506,
+      "year": 2023,
+      "description": "Türkiye declared 23,890 t of HS 5201 (raw cotton (lint)) imported from Tajikistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=762&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_KAZ_TUR_5201_2023",
+      "from": "KAZ",
+      "to": "TUR",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 22271.1,
+      "value_usd": 41264157,
+      "year": 2023,
+      "description": "Türkiye declared 22,271 t of HS 5201 (raw cotton (lint)) imported from Kazakhstan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=398&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TJK_CHN_5201_2023",
+      "from": "TJK",
+      "to": "CHN",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 21437.7,
+      "value_usd": 42435076,
+      "year": 2023,
+      "description": "China declared 21,438 t of HS 5201 (raw cotton (lint)) imported from Tajikistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=762&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_POL_5205_2023",
+      "from": "UZB",
+      "to": "POL",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 11242.0,
+      "value_usd": 36137782,
+      "year": 2023,
+      "description": "Poland declared 11,242 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_EGY_5205_2023",
+      "from": "UZB",
+      "to": "EGY",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 7279.9,
+      "value_usd": 27560806,
+      "year": 2023,
+      "description": "Egypt declared 7,280 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TJK_UZB_5205_2023",
+      "from": "TJK",
+      "to": "UZB",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 3108.3,
+      "value_usd": 7737279,
+      "year": 2023,
+      "description": "Uzbekistan declared 3,108 t of HS 5205 (cotton yarn) imported from Tajikistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=762&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TKM_IRN_5205_2023",
+      "from": "TKM",
+      "to": "IRN",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 2913.8,
+      "value_usd": 6397641,
+      "year": 2023,
+      "description": "Iran declared 2,914 t of HS 5205 (cotton yarn) imported from Turkmenistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=795&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TJK_UZB_5201_2023",
+      "from": "TJK",
+      "to": "UZB",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 2607.7,
+      "value_usd": 4161107,
+      "year": 2023,
+      "description": "Uzbekistan declared 2,608 t of HS 5201 (raw cotton (lint)) imported from Tajikistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=762&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TKM_TUR_5201_2023",
+      "from": "TKM",
+      "to": "TUR",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 2342.4,
+      "value_usd": 3357147,
+      "year": 2023,
+      "description": "Türkiye declared 2,342 t of HS 5201 (raw cotton (lint)) imported from Turkmenistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=795&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TJK_TUR_5205_2023",
+      "from": "TJK",
+      "to": "TUR",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 2325.0,
+      "value_usd": 7501645,
+      "year": 2023,
+      "description": "Türkiye declared 2,325 t of HS 5205 (cotton yarn) imported from Tajikistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=762&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_KAZ_CHN_5205_2023",
+      "from": "KAZ",
+      "to": "CHN",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 2235.9,
+      "value_usd": 5002579,
+      "year": 2023,
+      "description": "China declared 2,236 t of HS 5205 (cotton yarn) imported from Kazakhstan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=398&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_KAZ_DEU_5201_2023",
+      "from": "KAZ",
+      "to": "DEU",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 2175.6,
+      "value_usd": 4209949,
+      "year": 2023,
+      "description": "Germany declared 2,176 t of HS 5201 (raw cotton (lint)) imported from Kazakhstan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=398&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_UKR_5205_2023",
+      "from": "UZB",
+      "to": "UKR",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 2139.9,
+      "value_usd": 8575612,
+      "year": 2023,
+      "description": "Ukraine declared 2,140 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TJK_CHN_5205_2023",
+      "from": "TJK",
+      "to": "CHN",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 1500.8,
+      "value_usd": 3652361,
+      "year": 2023,
+      "description": "China declared 1,501 t of HS 5205 (cotton yarn) imported from Tajikistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=762&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TKM_ARM_5205_2023",
+      "from": "TKM",
+      "to": "ARM",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 1109.6,
+      "value_usd": 2474544,
+      "year": 2023,
+      "description": "Armenia declared 1,110 t of HS 5205 (cotton yarn) imported from Turkmenistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=795&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_MAR_5205_2023",
+      "from": "UZB",
+      "to": "MAR",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 997.1,
+      "value_usd": 3381246,
+      "year": 2023,
+      "description": "Morocco declared 997 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TKM_CHN_5205_2023",
+      "from": "TKM",
+      "to": "CHN",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 959.0,
+      "value_usd": 1947348,
+      "year": 2023,
+      "description": "China declared 959 t of HS 5205 (cotton yarn) imported from Turkmenistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=795&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_TKM_BEL_5201_2023",
+      "from": "TKM",
+      "to": "BEL",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 944.6,
+      "value_usd": 833422,
+      "year": 2023,
+      "description": "Belgium declared 945 t of HS 5201 (raw cotton (lint)) imported from Turkmenistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=795&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_ITA_5205_2023",
+      "from": "UZB",
+      "to": "ITA",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 880.6,
+      "value_usd": 3477844,
+      "year": 2023,
+      "description": "Italy declared 881 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_KGZ_5205_2023",
+      "from": "UZB",
+      "to": "KGZ",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 736.6,
+      "value_usd": 2324477,
+      "year": 2023,
+      "description": "Kyrgyzstan declared 737 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_ARM_5205_2023",
+      "from": "UZB",
+      "to": "ARM",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 697.0,
+      "value_usd": 2427139,
+      "year": 2023,
+      "description": "Armenia declared 697 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_PRT_5205_2023",
+      "from": "UZB",
+      "to": "PRT",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 688.3,
+      "value_usd": 2087766,
+      "year": 2023,
+      "description": "Portugal declared 688 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_KAZ_FRA_5201_2023",
+      "from": "KAZ",
+      "to": "FRA",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 597.7,
+      "value_usd": 1262947,
+      "year": 2023,
+      "description": "France declared 598 t of HS 5201 (raw cotton (lint)) imported from Kazakhstan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=398&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_BEL_5205_2023",
+      "from": "UZB",
+      "to": "BEL",
+      "hs": "5205",
+      "product": "cotton yarn",
+      "volume_tonnes": 538.4,
+      "value_usd": 1733234,
+      "year": 2023,
+      "description": "Belgium declared 538 t of HS 5205 (cotton yarn) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_UZB_TUR_5201_2023",
+      "from": "UZB",
+      "to": "TUR",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 525.5,
+      "value_usd": 887000,
+      "year": 2023,
+      "description": "Türkiye declared 526 t of HS 5201 (raw cotton (lint)) imported from Uzbekistan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=860&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    },
+    {
+      "id": "ct_KAZ_BEL_5201_2023",
+      "from": "KAZ",
+      "to": "BEL",
+      "hs": "5201",
+      "product": "raw cotton (lint)",
+      "volume_tonnes": 522.9,
+      "value_usd": 1110440,
+      "year": 2023,
+      "description": "Belgium declared 523 t of HS 5201 (raw cotton (lint)) imported from Kazakhstan in 2023. Mirror statistic: reported by the importing country.",
+      "sources": [
+        "https://comtradeapi.un.org/public/v1/preview/C/A/HS?partnerCode=398&period=2023&cmdCode=5201%2C5205&flowCode=M",
+        "https://comtradeplus.un.org/"
+      ],
+      "date": "2026-11-09",
+      "confidence": "confirmed",
+      "sample": false
+    }
+  ]
+}

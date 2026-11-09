@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PAXTA — Open Cotton Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Shared SVG definitions (see CLAUDE.md § Design): logo, ikat, confidence filters -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="logo" viewBox="0 0 48 48">
+        <g fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="11" y="11" width="26" height="26"/>
+          <rect x="11" y="11" width="26" height="26" transform="rotate(45 24 24)"/>
+          <circle cx="24" cy="18.5" r="5.5"/><circle cx="29.5" cy="24" r="5.5"/>
+          <circle cx="24" cy="29.5" r="5.5"/><circle cx="18.5" cy="24" r="5.5"/>
+          <path d="M24 21.5 L26.5 24 L24 26.5 L21.5 24 Z"/>
+        </g>
+      </symbol>
+
+      <!-- Abrband ikat: stepped warp-dyed lozenges -->
+      <pattern id="ikat" width="16" height="36" patternUnits="userSpaceOnUse">
+        <rect width="16" height="36" fill="#10162B"/>
+        <path fill="#F2EDE4" d="M6.5 1h3v4h2v5h2v4h1.5v8h-1.5v4h-2v5h-2v4h-3v-4h-2v-5h-2v-4h-1.5v-8h1.5v-4h2v-5h2z"/>
+        <path fill="#B3261E" d="M6.5 7h3v5h2v4h1.5v4h-1.5v4h-2v5h-3v-5h-2v-4h-1.5v-4h1.5v-4h2z"/>
+        <rect x="7" y="16" width="2" height="4" fill="#F2EDE4"/>
+      </pattern>
+
+      <!-- probable: dye bleeds along the warp -->
+      <filter id="fray" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9 0.06" numOctaves="2" seed="4" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
+        <feGaussianBlur in="d" stdDeviation="0.5 0.9"/>
+      </filter>
+      <!-- unknown / unverified: strongly frayed, blurred, washed out -->
+      <filter id="fade" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.7 0.03" numOctaves="2" seed="9" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G" result="d"/>
+        <feGaussianBlur in="d" stdDeviation="0.7 2.2" result="b"/>
+        <feColorMatrix in="b" type="saturate" values="0.15" result="s"/>
+        <feComponentTransfer in="s"><feFuncA type="linear" slope="0.42"/></feComponentTransfer>
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="banner" role="note">
+    <strong>Prototype – illustrative data.</strong>
+    Company-level entries marked SAMPLE DATA are fictional placeholders, not findings about any real company.
+    Country-to-country flows are real UN Comtrade statistics.
+  </div>
+
+  <header class="topbar">
+    <div class="brandline">
+      <svg width="30" height="30" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="wordmark">PAXTA</span><span class="product">Open Cotton Map</span>
+    </div>
+    <p class="tagline">Cotton supply chains from Central Asia to European fashion brands
+      <span class="uz" lang="uz">· Oʻrta Osiyodan Yevropagacha paxta zanjirlari</span></p>
+    <button id="zoom-ca" class="btn">Zoom: Central Asia</button>
+    <a class="btn" href="mockup/scan.html">Scan (concept)</a>
+    <button id="toggle-filters" class="btn" aria-expanded="false" aria-controls="sidebar">Filters</button>
+  </header>
+
+  <main class="layout">
+    <aside id="sidebar" class="sidebar">
+      <section>
+        <h2>Layers <span class="uz" lang="uz">· Qatlamlar</span></h2>
+        <div id="filter-layers" class="checks">
+          <label><input type="checkbox" value="company" checked>
+            <svg class="key" width="26" height="12" aria-hidden="true"><line x1="1" y1="6" x2="25" y2="6" stroke="#B3261E" stroke-width="3"/></svg>
+            <span>Company chain</span><span class="count" id="count-company"></span></label>
+          <label><input type="checkbox" value="trade">
+            <svg class="key" width="26" height="12" aria-hidden="true"><line x1="1" y1="6" x2="25" y2="6" stroke="#F2EDE4" stroke-opacity=".55" stroke-width="3"/></svg>
+            <span>Country trade <span class="uz">(UN Comtrade)</span></span><span class="count" id="count-trade"></span></label>
+        </div>
+      </section>
+      <section>
+        <h2>Country <span class="uz" lang="uz">· Mamlakat</span></h2>
+        <div id="filter-country" class="checks"></div>
+      </section>
+      <section>
+        <h2>Node type <span class="uz" lang="uz">· Tugun turi</span></h2>
+        <div id="filter-type" class="checks"></div>
+      </section>
+      <section>
+        <h2>Confidence <span class="uz" lang="uz">· Ishonch</span></h2>
+        <div id="filter-confidence" class="checks"></div>
+      </section>
+      <section class="stats">
+        <p id="stats"></p>
+        <button id="reset" class="btn">Reset filters</button>
+      </section>
+      <section>
+        <h2>Legend <span class="uz" lang="uz">· Shartli belgilar</span></h2>
+        <div id="legend" class="legend"></div>
+      </section>
+    </aside>
+
+    <div id="map" class="map" aria-label="Supply chain map"></div>
+
+    <aside id="panel" class="panel" hidden>
+      <button id="panel-close" class="panel-close" aria-label="Close details">×</button>
+      <div id="panel-body"></div>
+    </aside>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
